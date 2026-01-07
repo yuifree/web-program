@@ -1,5 +1,6 @@
 {
-  "name": "git-tutorial",
+  "name": "webpro",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
