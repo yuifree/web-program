@@ -1,29 +1,38 @@
 import React, { useState } from "react";
 import DiceCanvas from "./DiceCanvas.jsx";
-import diceSound from "../assets/dice-roll.mp3";
 
 export default function SingleMode() {
-  const [rolls, setRolls] = useState([]);
+  const [history, setHistory] = useState(
+    JSON.parse(localStorage.getItem("diceHistory")) || []
+  );
+  const [rollValue, setRollValue] = useState(null);
   const [rolling, setRolling] = useState(false);
 
-  const handleRoll = () => {
-    const audio = new Audio(diceSound);
+  const rollDice = () => {
+    setRolling(true);
+
+    const audio = new Audio("/src/assets/dice-roll.mp3");
     audio.play();
 
-    setRolling(true);
+    if (navigator.vibrate) navigator.vibrate(200);
+
     setTimeout(() => {
-      const newRoll = Math.floor(Math.random() * 100) + 1;
-      setRolls((prev) => [newRoll, ...prev].slice(0, 10));
+      const roll = Math.floor(Math.random() * 100) + 1;
+      setRollValue(roll);
+      const newHistory = [roll, ...history].slice(0, 10);
+      setHistory(newHistory);
+      localStorage.setItem("diceHistory", JSON.stringify(newHistory));
       setRolling(false);
     }, 600);
   };
 
   return (
-    <div className="mode">
+    <div className="single-mode">
       <h2>Single Mode</h2>
-      <DiceCanvas rollValue={rolls[0]} rolling={rolling} />
-      <button onClick={handleRoll} disabled={rolling}>Roll Dice</button>
-      <p>Recent Rolls: {rolls.join(", ")}</p>
+      <DiceCanvas rollValue={rollValue} rolling={rolling} />
+      <button onClick={rollDice} disabled={rolling}>Roll 1d100</button>
+      {rollValue && <p>Roll: {rollValue}</p>}
+      <p className="history">History: {history.join(", ")}</p>
     </div>
   );
 }
