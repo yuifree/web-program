@@ -1,0 +1,94 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f4f4f9;
+  color: #333;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+
+/* ヘッダー */
+header {
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #4b6cb7;
+  margin-bottom: 10px;
+}
+
+header button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #6a82fb;
+  color: white;
+  transition: background 0.3s;
+}
+
+header button:hover {
+  background: #4b6cb7;
+}
+
+/* モード共通 */
+.single-mode, .duel-mode {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* ボタン */
+button {
+  margin: 10px 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #f6d365;
+  color: #333;
+  transition: all 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background: #fda085;
+}
+
+button:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+}
+
+/* ダイス結果表示 */
+p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* 勝者表示 */
+.duel-mode p.winner {
+  font-weight: bold;
+  font-size: 20px;
+  color: #2ecc71; /* 緑 */
+}
+
+/* 履歴表示 */
+.single-mode p.history {
+  font-size: 16px;
+  color: #666;
+  margin-top: 10px;
+}
+
+/* フッター */
+footer {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #999;
+}
